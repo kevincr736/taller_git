@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registro de Personajes</title>
+    <style>
+        /* Estilos para el encabezado */
+        
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            color: #354b59;
+            margin-top: 60px;
+        }
+        /* Estilos para el formulario */
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        label {
+            display: block;
+            margin-top: 20px;
+            color: #354b59;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        
+        textarea {
+            height: 100px;
+        }
+        
+        button[type="button"] {
+            background-color: #354b59;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        /* Estilos para la sección de personajes */
+        
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            color: #354b59;
+            margin-top: 60px;
+        }
+        
+        #personajesGuardados {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        #personajesGuardados p {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #354b59;
+            padding-bottom: 10px;
+        }
+        /* Estilos para el botón de borrar personajes */
+        
+        button[type="button"].borrar {
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Registro de Personajes</h1>
+    <form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre"><br>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad"><br>
+
+        <label for="genero">Género:</label>
+        <input type="text" id="genero"><br>
+
+        <label for="descripcion">Descripción:</label><br>
+        <textarea id="descripcion"></textarea><br>
+
+        <button type="button" onclick="guardarPersonaje()">Guardar</button>
+    </form>
+
+    <h2>Personajes guardados:</h2>
+    <div id="personajesGuardados"></div>
+
+    <button type="button" onclick="borrarPersonajes()">Borrar todos los personajes</button>
+
+    <script>
+        var personajesGuardados = [];
+
+        function guardarPersonaje() {
+            var nombre = document.getElementById("nombre").value;
+            var edad = document.getElementById("edad").value;
+            var genero = document.getElementById("genero").value;
+            var descripcion = document.getElementById("descripcion").value;
+
+            var personaje = {
+                nombre: nombre,
+                edad: edad,
+                genero: genero,
+                descripcion: descripcion
+            };
+
+            personajesGuardados.push(personaje);
+
+            document.getElementById("nombre").value = "";
+            document.getElementById("edad").value = "";
+            document.getElementById("genero").value = "";
+            document.getElementById("descripcion").value = "";
+
+            mostrarPersonajes();
+        }
+
+        function mostrarPersonajes() {
+            var personajesDiv = document.getElementById("personajesGuardados");
+            personajesDiv.innerHTML = "";
+
+            for (var i = 0; i < personajesGuardados.length; i++) {
+                var nombreP = document.createElement("p");
+                nombreP.innerHTML = "<strong>Nombre:</strong> " + personajesGuardados[i].nombre;
+
+                var edadP = document.createElement("p");
+                edadP.innerHTML = "<strong>Edad:</strong> " + personajesGuardados[i].edad;
+
+                var generoP = document.createElement("p");
+                generoP.innerHTML = "<strong>Género:</strong> " + personajesGuardados[i].genero;
+
+                var descripcionP = document.createElement("p");
+                descripcionP.innerHTML = "<strong>Descripción:</strong> " + personajesGuardados[i].descripcion;
+
+                personajesDiv.appendChild(nombreP);
+                personajesDiv.appendChild(edadP);
+                personajesDiv.appendChild(generoP);
+                personajesDiv.appendChild(descripcionP);
+            }
+        }
+
+        function borrarPersonajes() {
+            personajesGuardados = [];
+            mostrarPersonajes();
+        }
+
+        // Guardar personaje
+        function guardarPersonaje() {
+            var nombre = document.getElementById("nombre").value;
+            var edad = document.getElementById("edad").value;
+            var genero = document.getElementById("genero").value;
+            var descripcion = document.getElementById("descripcion").value;
+
+            var personaje = {
+                nombre: nombre,
+                edad: edad,
+                genero: genero,
+                descripcion: descripcion
+            };
+
+            personajesGuardados.push(personaje);
+
+            document.getElementById("nombre").value = "";
+            document.getElementById("edad").value = "";
+            document.getElementById("genero").value = "";
+            document.getElementById("descripcion").value = "";
+
+            mostrarPersonajes();
+        }
+
+        // Mostrar personajes
+        function mostrarPersonajes() {
+            var personajesDiv = document.getElementById("personajesGuardados");
+            personajesDiv.innerHTML = "";
+
+            for (var i = 0; i < personajesGuardados.length; i++) {
+                var nombreP = document.createElement("p");
+                nombreP.innerHTML = "<strong>Nombre:</strong> " + personajesGuardados[i].nombre;
+
+                var edadP = document.createElement("p");
+                edadP.innerHTML = "<strong>Edad:</strong> " + personajesGuardados[i].edad;
+
+                var generoP = document.createElement("p");
+                generoP.innerHTML = "<strong>Género:</strong> " + personajesGuardados[i].genero;
+
+                var descripcionP = document.createElement("p");
+                descripcionP.innerHTML = "<strong>Descripción:</strong> " + personajesGuardados[i].descripcion;
+
+                personajesDiv.appendChild(nombreP);
+                personajesDiv.appendChild(edadP);
+                personajesDiv.appendChild(generoP);
+                personajesDiv.appendChild(descripcionP);
+
+                // Separador entre cada personaje
+                var separador = document.createElement("hr");
+                personajesDiv.appendChild(separador);
+            }
+
+            // Mostrar número total de personajes
+            var numPersonajes = document.createElement("p");
+            numPersonajes.innerHTML = "<strong>Número total de personajes:</strong> " + personajesGuardados.length;
+            personajesDiv.appendChild(numPersonajes);
+        }
+
+        // Borrar personajes
+        function borrarPersonajes() {
+            personajesGuardados = [];
+            mostrarPersonajes();
+        }
+    </script>
+</body>
+
+</html>
